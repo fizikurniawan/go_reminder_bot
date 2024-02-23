@@ -39,11 +39,12 @@ func main() {
 	reminderManager := model.NewReminderManager(db)
 
 	// Initialize the reminder handler
-	reminderHandler := handler.NewReminderHandler(reminderManager)
+	reminderHandler := handler.NewReminderHandler(reminderManager, userManager)
 	startHandler := handler.NewStartHandler(userManager)
 
 	b.RegisterHandler(bot.HandlerTypeMessageText, "/start", bot.MatchTypeExact, startHandler.StartBot)
 	b.RegisterHandler(bot.HandlerTypeMessageText, "/add", bot.MatchTypeExact, reminderHandler.AddReminder)
+	b.RegisterHandler(bot.HandlerTypeMessageText, "/set", bot.MatchTypeContains, reminderHandler.SetReminder)
 
 	// Start bot
 	go func() {

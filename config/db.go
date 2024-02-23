@@ -25,7 +25,8 @@ func createTableUser(db *sql.DB) (err error) {
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS users (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		user_id TEXT,
-		name TEXT,
+		first_name TEXT,
+		last_name TEXT,
 		join_at DATETIME,
 		is_active BOOLEAN
 	)`)
